@@ -1,0 +1,11 @@
+services:
+  chatbot:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: chatbot_app
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    restart: always
