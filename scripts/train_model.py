@@ -15,10 +15,8 @@ from src.training.trainer import ModelTrainer
 def main():
     """Main training function"""
     
-    # Initialize configuration
     config = ModelConfig()
     
-    # Load and prepare data
     print("Loading FAQ data...")
     with open('data/independence_day.txt') as f:
         lines = f.readlines()
@@ -31,7 +29,6 @@ def main():
     print(f"Training data shape: {X.shape}")
     print(f"Vocabulary size: {preprocessor.get_vocab_size()}")
     
-    # Build model
     print("Building model...")
     chatbot_model = ChatbotModel(config, preprocessor.get_vocab_size())
     chatbot_model.compile_model()
@@ -39,7 +36,6 @@ def main():
     print("Model summary:")
     chatbot_model.summary()
     
-    # Train model
     print("Starting training...")
     trainer = ModelTrainer(
         chatbot_model.get_model(), 
@@ -49,7 +45,6 @@ def main():
     
     trainer.train(X, y)
     
-    # Start interactive sequence generation
     print("Training completed! Starting interactive mode...")
     trainer.generate_text()
 

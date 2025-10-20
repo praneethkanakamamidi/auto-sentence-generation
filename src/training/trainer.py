@@ -24,7 +24,7 @@ class ModelTrainer:
         
         os.makedirs(os.path.dirname(model_save_path), exist_ok=True)
 
-        print(f"\n🚀 Training started for {epochs} epochs...\n")
+        print(f"\n Training started for {epochs} epochs...\n")
         history = self.model.fit(
             X, y,
             epochs=epochs,
@@ -32,17 +32,15 @@ class ModelTrainer:
             verbose=1
         )
         
-        # Save trained model
         self.model.save(model_save_path)
-        print(f"✅ Model saved at {model_save_path}")
+        print(f"Model saved at {model_save_path}")
         
         # Save tokenizer
         tokenizer_path = "model/tokenizer.json"
         with open(tokenizer_path, "w", encoding="utf-8") as f:
             f.write(self.tokenizer.to_json())
-        print(f"✅ Tokenizer saved at {tokenizer_path}")
+        print(f"Tokenizer saved at {tokenizer_path}")
 
-        # Save epoch history to TXT
         with open(history_file, "w") as f:
             f.write("epoch,loss,accuracy\n")
             for i in range(len(history.history['loss'])):

@@ -18,22 +18,11 @@ class DataPreprocessor:
         """Prepares training data from text"""
         if isinstance(text_data, list):
             text_data = " ".join([line.strip() for line in text_data if line.strip()])
-
-        # Tokenize the text
         self.tokenizer.fit_on_texts([text_data])
-        
-        # Create input sequences
         input_sequences = self._create_input_sequences(text_data)
-        
-        # Pad sequences
         padded_sequences = self._pad_sequences(input_sequences)
-        
-        # Split into features and labels
         X, y = self._split_features_labels(padded_sequences)
-        
-        # Convert labels to categorical
         y_categorical = to_categorical(y, num_classes=self.get_vocab_size())
-        
         return X, y_categorical
     
     def _create_input_sequences(self, text_data):
