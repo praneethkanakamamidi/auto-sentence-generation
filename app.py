@@ -9,7 +9,7 @@ from src.utils.preprocessor import DataPreprocessor
 from src.models.chatmodel import ChatbotModel
 from src.training.trainer import ModelTrainer
 
-st.title("Chatbot Text Generator")
+st.title("Sentence Auto Generation")
 
 MODEL_PATH = "model/chatbot_model.h5"
 TOKENIZER_PATH = "model/tokenizer.json"
@@ -26,14 +26,14 @@ def load_model_and_tokenizer():
 
 model, tokenizer = load_model_and_tokenizer()
 
-st.success("Model and tokenizer loaded successfully!")
-
-# Input section
-seed_text = st.text_input("Enter a seed phrase", "India is a")
+seed_text = st.text_area(
+    "Enter some words to initiate conversation", 
+    "India is a", 
+    height=150
+)
 num_words = st.slider("Number of words to generate", 5, 50, 10)
 
 if st.button("Generate Text"):
-    # Prepare the text
     token_text = tokenizer.texts_to_sequences([seed_text])[0]
     max_seq_len = config.MAX_SEQUENCE_LENGTH - 1
     text = seed_text
