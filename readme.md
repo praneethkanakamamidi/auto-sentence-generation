@@ -143,7 +143,7 @@ Centralized configuration for model, training, and inference parameters.
 
 #### Output 3
 ![Test Result 3](output/test_result_3.png)
-
+ 
 ## Limitations
 
 Despite its functional design and modular architecture, the system has a few inherent limitations:
