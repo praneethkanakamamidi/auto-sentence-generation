@@ -1,4 +1,4 @@
-# Chatbot Text Generation System
+# Auto Sentence Generation
 
 ## Problem Statement
 The goal of this project is to develop a deep learning-based chatbot capable of generating human-like text sequences given a seed phrase. The system focuses on natural language modeling, enabling contextual word prediction and coherent sentence generation. This solution can be integrated into conversational AI applications, content generation pipelines, or customer support automation systems.
