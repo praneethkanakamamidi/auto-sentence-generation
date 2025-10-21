@@ -112,13 +112,59 @@ Centralized configuration for model, training, and inference parameters.
 2. Provide a seed phrase.  
 3. Generate text using the `generate_text` method or via the Streamlit interface.
 
-### Deployment
+### Steps to run
 1. Build the Docker image:  
    ```bash
-   `docker build -t chatbot_app` .
+   `docker build -t chatbot_app`
+   ```
 
 
-Run the container:
-`docker-compose up`
+2. Run the container:
+   ```bash
+    `docker-compose up`
+    ```
 
-Access the Streamlit interface at `http://localhost:8501`
+3. Access the Streamlit interface at 
+    ```bash
+    `http://localhost:8501`
+    ```
+
+---
+
+---
+
+###  Test Results
+
+#### Output 1
+![Test Result 1](output/test_result_1.png)
+
+#### Output 2
+![Test Result 2](output/test_result_2.png)
+
+#### Output 3
+![Test Result 3](output/test_result_3.png)
+
+## Limitations
+
+Despite its functional design and modular architecture, the system has a few inherent limitations:
+
+1. **Limited Context Understanding:**  
+   The LSTM-based model generates text based on short preceding sequences and cannot capture long-range contextual dependencies like transformer-based models (e.g., GPT or BERT).
+
+2. **Data Dependency:**  
+   The quality and diversity of generated text are highly dependent on the dataset used for training. Poor or domain-limited data will result in repetitive or incoherent outputs.
+
+3. **Vocabulary Constraints:**  
+   Since the tokenizer is trained on a fixed vocabulary, any out-of-vocabulary words or unseen expressions during inference may cause generic or inaccurate predictions.
+
+4. **Lack of Semantic Awareness:**  
+   The model predicts next words based on statistical likelihood rather than true semantic understanding, leading to grammatically correct but contextually irrelevant sentences.
+
+5. **Static Response Generation:**  
+   The chatbot does not maintain conversational memory or dialogue history — each generation is independent of prior context.
+
+6. **Compute and Training Time:**  
+   LSTM-based models can be computationally expensive to train on large corpora and may not fully leverage parallelization like modern transformer architectures.
+
+7. **Limited Scalability for Real-Time Use:**  
+   Although suitable for prototypes and demos, real-time interactive deployment may require GPU acceleration or optimization for low-latency responses.
